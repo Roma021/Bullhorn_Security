@@ -26,9 +26,15 @@
                 <a class="nav-link" href="/register">Register <span class="sr-only">(current)</span></a>
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="/login">Logout <span class="sr-only">(current)</span></a>
-            </li>
+            <!--<li class="nav-item active">-->
+                <!--<a class="nav-link" href="/login">Logout <span class="sr-only">(current)</span></a>-->
+            <!--</li>-->
+
+            <div sec:authorize="hasAuthority('USER')">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/login">Logout <span class="sr-only">(current)</span></a>
+                </li>
+            </div>
 
 
             <li class="nav-item dropdown">
@@ -54,7 +60,7 @@
 <div class="jumbotron jumbotron-fluid bg-success">
     <div class="container">
         <h1 align="center" class="display-4">Week Seven Challenge:BullHorn with Security</h1>
-        <p align="center" class="lead">Please Login/Register and submit your message.</p>
+        <p align="center" class="lead">Please Register & Login in order to submit your message.</p>
     </div>
 </div>
 
@@ -79,9 +85,13 @@
     </a>
 </div>
 
-<div sec:authorize="hasAnyAuthority('ADMIN')">
+<div sec:authorize="hasAuthority('USER')">
+    <a class="btn btn-danger" href="/add" role="button">Add a Message</a>
+</div>
 
-<a class="btn btn-danger" href="/add" role="button">Add a Message</a>
+<!--<a class="btn btn-danger" href="/add" role="button">Add a Message</a>-->
+
+
 <table class="table table-striped table-dark">
     <thead>
     <tr>
@@ -108,7 +118,7 @@
         </td></tr>
 
 </table>
-</div>
+
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">

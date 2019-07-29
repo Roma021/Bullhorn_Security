@@ -55,15 +55,12 @@ public class HomeController {
 
     @GetMapping("/add")
     public String messageForm(Model model) {
-//        model.addAttribute("user", userService.getUser());
         model.addAttribute("message", new Message());
         return "messageform";
     }
 
     @PostMapping("/process")
     public String processMessage( @Valid Message message, BindingResult result){
-//        model.addAttribute("user", userService.getUser());
-////        message.setPostedDate(getCurrentTime());
         if(result.hasErrors()){
             return "messageform";
         }
@@ -76,14 +73,13 @@ public class HomeController {
     @RequestMapping("/detail/{id}")
     public String showMessage(@PathVariable("id") long id, Model model){
         model.addAttribute("message", messageRepository.findById(id).get());
-//        model.addAttribute("user", userService.getUser());
+
         return "show";
     }
 
     @RequestMapping("/update/{id}")
     public String updateMessage(@PathVariable("id") long id, Model model){
         model.addAttribute("message", messageRepository.findById(id).get());
-//        model.addAttribute("user", userService.getUser());
         return "messageform";
     }
 
